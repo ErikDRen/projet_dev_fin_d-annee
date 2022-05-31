@@ -57,11 +57,13 @@ function collisionHandler (bullet, alien) {
         scoreText.text = scoreString + score;
 
         enemyBullets.callAll('kill',this);
-        stateText.text = " You Won, \n Click to restart";
-        stateText.visible = true;
+        createAliens();
+        dificulty *= 2;
+        //stateText.text = " You Won, \n Click to restart";
+        //stateText.visible = true;
 
         //the "click to restart" handler
-        game.input.onTap.addOnce(restart,this);
+        //game.input.onTap.addOnce(restart,this);
     }
 
 }
@@ -121,8 +123,8 @@ function enemyFires () {
         // And fire the bullet from this enemy
         enemyBullet.reset(shooter.body.x, shooter.body.y);
 
-        game.physics.arcade.moveToObject(enemyBullet,player,120);
-        firingTimer = game.time.now + 200;
+        game.physics.arcade.moveToObject(enemyBullet,player, dificulty);
+        firingTimer = game.time.now + 100;
     }
 
 }
@@ -162,6 +164,7 @@ function restart () {
     //  And brings the aliens back from the dead :)
     aliens.removeAll();
     createAliens();
+    //dificulty = 50;
 
     //revives the player
     player.revive();

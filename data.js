@@ -14,3 +14,4 @@ var enemyBullet;
 var firingTimer = 0;
 var stateText;
 var livingEnemies = [];
+var dificulty = 50;
