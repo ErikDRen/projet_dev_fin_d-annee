@@ -1,7 +1,10 @@
 var player;
+var player2;
 var aliens;
 var bullets;
+var bullets2;
 var bulletTime = 0;
+var bulletTime2 = 0;
 var cursors;
 var fireButton;
 var explosions;

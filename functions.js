@@ -122,8 +122,13 @@ function enemyFires () {
         var shooter=livingEnemies[random];
         // And fire the bullet from this enemy
         enemyBullet.reset(shooter.body.x, shooter.body.y);
+        cible = game.rnd.integerInRange(1, 2);
+        if (cible == 1) {
+            game.physics.arcade.moveToObject(enemyBullet,player, dificulty);
+        } else {
+            game.physics.arcade.moveToObject(enemyBullet,player2, dificulty);
+        }
 
-        game.physics.arcade.moveToObject(enemyBullet,player, dificulty);
         firingTimer = game.time.now + 100;
     }
 
@@ -148,6 +153,27 @@ function fireBullet () {
 
 }
 
+function fireBullet2 () {
+
+    //  To avoid them being allowed to fire too fast we set a time limit
+    if (game.time.now > bulletTime2)
+    {
+        //  Grab the first bullet we can from the pool
+        bullet = bullets2.getFirstExists(false);
+
+        if (bullet)
+        {
+            //  And fire it
+            bullet.reset(player2.x, player2.y + 8);
+            bullet.body.velocity.y = -400;
+            bulletTime2 = game.time.now + 200;
+        }
+    }
+
+}
+
+
+
 function resetBullet (bullet) {
 
     //  Called if the bullet goes out of the screen
@@ -168,7 +194,18 @@ function restart () {
 
     //revives the player
     player.revive();
+    player2.revive();
     //hides the text
     stateText.visible = false;
 
 }
+
+function hideChat() {
+    var x = document.getElementById("chat");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
